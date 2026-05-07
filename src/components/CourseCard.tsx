@@ -7,15 +7,40 @@ interface CourseProps {
   icon: string;
 }
 
-export default function CourseCard({ title, desc, link, icon }: CourseProps) {
+export default function CourseCard({
+  title,
+  desc,
+  link,
+  icon,
+}: CourseProps) {
   return (
-    <div className="group bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300">
-      <div className="text-4xl mb-4">{icon}</div>
-      <h3 className="font-bold text-xl group-hover:text-green-600 transition">{title}</h3>
-      <p className="text-sm text-gray-500 mt-2 leading-relaxed">{desc}</p>
-      <Link href={link} className="mt-4 inline-flex items-center text-green-600 font-bold">
-        Jalqabi <span className="ml-1 group-hover:translate-x-1 transition">→</span>
-      </Link>
-    </div>
+    <Link
+      href={link}
+      className="group block bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+    >
+      {/* Icon */}
+      <div className="text-5xl mb-5 group-hover:scale-110 transition duration-300">
+        {icon}
+      </div>
+
+      {/* Title */}
+      <h3 className="font-black text-2xl text-gray-900 group-hover:text-emerald-600 transition">
+        {title}
+      </h3>
+
+      {/* Description */}
+      <p className="text-sm text-gray-500 mt-3 leading-7">
+        {desc}
+      </p>
+
+      {/* Button */}
+      <div className="mt-6 inline-flex items-center gap-2 text-emerald-600 font-black">
+        Note Ilaali
+
+        <span className="group-hover:translate-x-1 transition duration-300">
+          →
+        </span>
+      </div>
+    </Link>
   );
 }
