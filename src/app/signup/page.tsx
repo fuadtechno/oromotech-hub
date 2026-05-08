@@ -52,7 +52,7 @@ export default function SignupPage() {
     } catch (err: any) {
       console.error("Signup Error:", err);
       if (err.code === 'auth/email-already-in-use') {
-        setError("Email kanaan kanaan dura galmaa'ameera.");
+        setError("Email kun kanaan dura galmaa'ameera.");
       } else if (err.code === 'auth/weak-password') {
         setError("Password-ni kee baay'ee laafaadha.");
       } else {

@@ -1,5 +1,5 @@
 import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
-import { getAuth, Auth, setPersistence, browserLocalPersistence } from "firebase/auth";
+import { getAuth, Auth } from "firebase/auth";
 import { getFirestore, Firestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -11,19 +11,15 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// 1. Initialize App safely
+// Singleton initialization
 const app: FirebaseApp = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 
-// 2. Initialize Services
 const auth: Auth = getAuth(app);
 const db: Firestore = getFirestore(app);
 
-// 3. THE FIX: Set persistence ONLY on the client side
-// This prevents the "Pending promise was never set" error during SSR/Turbopack reloads
-if (typeof window !== "undefined") {
-  setPersistence(auth, browserLocalPersistence).catch((err) => {
-    console.error("Firebase persistence error:", err);
-  });
-}
+// REMOVE the manual setPersistence call here. 
+// Firebase defaults to browserLocalPersistence automatically.
+// If you MUST call it, do it inside an 'onAuthStateChanged' listener 
+// or a specific login function to avoid top-level race conditions.
 
 export { auth, db };

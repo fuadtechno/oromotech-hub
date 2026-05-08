@@ -9,10 +9,16 @@ export default function Navbar() {
       </h1>
 
       <div className="space-x-6 text-sm font-medium">
-        <Link href="/courses" className="text-gray-600 hover:text-green-600 transition">
+        <Link href="/about" className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition shadow-md shadow-green-100">
+          About us
+        </Link>
+        <Link href="/courses" className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition shadow-md shadow-green-100">
           Courses
         </Link>
-        <Link href="/login" className="text-gray-600 hover:text-green-600 transition">
+        <Link href="/privacy" className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition shadow-md shadow-green-100">
+          Privacy policy
+        </Link>
+        <Link href="/login" className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition shadow-md shadow-green-100">
           Login
         </Link>
         <Link href="/signup" className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition shadow-md shadow-green-100">

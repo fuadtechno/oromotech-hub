@@ -50,7 +50,7 @@ export default function Home() {
               <span className="text-lg">🚀</span>
 
               <span className="text-sm font-bold text-emerald-700 tracking-wide">
-                AFRICA'S OROMO TECH LEARNING PLATFORM
+                 oromotech-hub LEARNING PLATFORM
               </span>
 
             </div>

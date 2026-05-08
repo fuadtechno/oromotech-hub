@@ -48,7 +48,7 @@ export default function PrivacyPage() {
 
             <Link
               href="/courses"
-              className="text-gray-300 hover:text-emerald-400 transition-all duration-300"
+              className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-emerald-500/20 hover:scale-105 transition-all duration-300"
             >
               Courses
             </Link>
