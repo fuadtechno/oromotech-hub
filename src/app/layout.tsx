@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Oromo Tech Hub | Barumsa Teknoloji",
-  description: "Afaan Oromootiin koodingii fi teknolojii baradhu",
+  description: "Fuad Aliyi Full Stuck Developper",
 };
 
 export default function RootLayout({

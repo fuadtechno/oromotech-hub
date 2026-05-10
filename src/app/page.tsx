@@ -7,9 +7,9 @@ export default function Home() {
 
   // Koorsiiwwan fuula duraa irratti mul'atan
   const topCourses = [
-    { title: "HTML Basics", desc: "Caasaa weebsaayitii ijaaruu baradhu.", link: "/courses/1", icon: "🌐" },
-    { title: "CSS Fundamentals", desc: "Weebsaayitii kee dizaayiniin bareechi.", link: "/courses/2", icon: "🎨" },
-    { title: "JavaScript Basics", desc: "Weebsaayitii kee socho'aa taasisi.", link: "/courses/3", icon: "⚡" },
+    { title: "HTML Basics", desc: "Caasaa weebsaayitii ijaaruu baradhu.", link: "/courses/html", icon: "🌐" },
+    { title: "CSS Fundamentals", desc: "Weebsaayitii kee dizaayiniin bareechi.", link: "/courses/css", icon: "🎨" },
+    { title: "JavaScript Basics", desc: "Weebsaayitii kee socho'aa taasisi.", link: "/courses/javascript", icon: "⚡" },
   ];
 
   return (
