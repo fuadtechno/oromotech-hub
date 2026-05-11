@@ -1,5 +1,5 @@
 "use client";
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Navbar() {
   return (
@@ -14,32 +14,48 @@ export default function Navbar() {
 
       {/* Navigation Links */}
       <div className="hidden md:flex items-center gap-8">
+
         <Link href="/about" className="text-gray-600 font-bold hover:text-emerald-600 transition">
           About us
         </Link>
-        
+
         <Link href="/courses" className="text-gray-600 font-bold hover:text-emerald-600 transition">
           Courses
         </Link>
+
         <Link href="/privacy" className="text-gray-600 font-bold hover:text-emerald-600 transition">
           Privacy policy
         </Link>
+
+        {/* 🔥 NEW: External Learning Platform */}
+        <a
+          href="https://aww-fuadtechnos-projects.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 font-bold hover:text-blue-800 transition"
+        >
+          Learning Platform
+        </a>
+
       </div>
 
       {/* Auth Buttons */}
       <div className="flex items-center gap-4">
+
         <Link 
           href="/login" 
           className="text-gray-700 font-bold px-5 py-2.5 rounded-xl hover:bg-gray-50 transition"
         >
           Login
         </Link>
+
         <Link 
           href="/signup" 
           className="bg-emerald-600 text-white px-6 py-2.5 rounded-xl font-black shadow-lg shadow-emerald-100 hover:bg-emerald-700 hover:scale-105 transition active:scale-95"
         >
           Get Started
         </Link>
+
       </div>
 
     </nav>

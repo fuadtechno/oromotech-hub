@@ -26,17 +26,21 @@ type RegionCourse = {
 };
 
 export default function Grade8ExamPrep() {
-  const [activeRegion, setActiveRegion] = useState("oromia");
+  const [activeRegion, setActiveRegion] = useState<"oromia" | "other">(
+    "oromia"
+  );
 
   const stats = useMemo(() => {
-    if (activeRegion === "oromia") {
-      return { courseCount: oromiaCourses.length };
-    } else {
-      return { courseCount: otherRegionCourses.length };
-    }
+    return {
+      courseCount:
+        activeRegion === "oromia"
+          ? oromiaCourses.length
+          : otherRegionCourses.length,
+    };
   }, [activeRegion]);
 
-  const displayedCourses = activeRegion === "oromia" ? oromiaCourses : otherRegionCourses;
+  const displayedCourses =
+    activeRegion === "oromia" ? oromiaCourses : otherRegionCourses;
 
   const buttonStyles =
     "px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 border border-slate-200 hover:border-emerald-500";
@@ -44,21 +48,22 @@ export default function Grade8ExamPrep() {
   return (
     <section className="min-h-screen py-24 px-6 bg-gradient-to-br from-slate-50 to-blue-50 text-slate-900">
       <div className="mx-auto max-w-7xl">
+
         {/* HEADER */}
         <div className="mb-16 text-center">
           <p className="text-sm uppercase tracking-[0.4em] text-emerald-600 font-black mb-4">
             📚 Grade 8 Exam Preparation
           </p>
-          <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-3">
+          <h1 className="text-4xl md:text-5xl font-black mb-3">
             Grade 8 National Exam Prep
           </h1>
-          <p className="text-slate-600 max-w-2xl mx-auto leading-8 mb-8">
-            Past exams, model questions, and smart revision materials for Grade 8 national exams across Oromia and other regions.
+          <p className="text-slate-600 max-w-2xl mx-auto mb-8">
+            Past exams, model questions, and revision materials for Grade 8 students.
           </p>
         </div>
 
-        {/* REGION TABS */}
-        <div className="mb-12 flex flex-wrap items-center justify-center gap-4">
+        {/* REGION BUTTONS */}
+        <div className="mb-12 flex justify-center gap-4 flex-wrap">
           <button
             onClick={() => setActiveRegion("oromia")}
             className={`${buttonStyles} ${
@@ -69,6 +74,7 @@ export default function Grade8ExamPrep() {
           >
             Oromia Region
           </button>
+
           <button
             onClick={() => setActiveRegion("other")}
             className={`${buttonStyles} ${
@@ -81,50 +87,79 @@ export default function Grade8ExamPrep() {
           </button>
         </div>
 
-        {/* STATS CARD */}
-        <div className="mb-12 rounded-3xl border-2 p-6 text-center bg-slate-50 border-slate-200">
-          <h3 className="text-lg font-black text-slate-900 mb-2">
-            {activeRegion === "oromia" ? "Oromia Region" : "Other Regions"}
+        {/* STATS */}
+        <div className="mb-10 rounded-3xl border p-6 text-center bg-white shadow-sm">
+          <h3 className="text-lg font-bold mb-2">
+            {activeRegion === "oromia"
+              ? "Oromia Region"
+              : "Other Regions"}
           </h3>
-          <p className="text-sm text-slate-600">
-            {stats.courseCount} courses
+          <p className="text-slate-600">
+            {stats.courseCount} Courses Available
           </p>
         </div>
 
-        {/* COURSES TABLE */}
-        <div className="overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-sm">
+        {/* ✅ UPGRADED COURSES TABLE */}
+        <div className="overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-md">
           <table className="min-w-full border-collapse text-left">
-            <thead className="bg-sky-600 text-white">
+
+            {/* HEADER */}
+            <thead className="bg-gradient-to-r from-sky-600 to-emerald-600 text-white">
               <tr>
-                <th className="px-6 py-4 text-sm font-semibold uppercase tracking-[0.12em]">
+                <th className="px-6 py-4 text-sm font-semibold uppercase tracking-widest">
                   Course Name
                 </th>
-                <th className="px-6 py-4 text-sm font-semibold uppercase tracking-[0.12em]">
-                  Download
+                <th className="px-6 py-4 text-sm font-semibold uppercase tracking-widest">
+                  File Link
+                </th>
+                <th className="px-6 py-4 text-sm font-semibold uppercase tracking-widest">
+                  Action
                 </th>
               </tr>
             </thead>
+
+            {/* BODY */}
             <tbody>
-              {displayedCourses.map((course: RegionCourse) => (
-                <tr key={course.title} className="border-b border-slate-200 hover:bg-slate-50">
-                  <td className="px-6 py-5 text-sm font-semibold text-slate-900">
+              {displayedCourses.map((course: RegionCourse, index: number) => (
+                <tr
+                  key={course.title + index}
+                  className="border-b border-slate-100 hover:bg-slate-50 transition"
+                >
+                  {/* COURSE NAME */}
+                  <td className="px-6 py-5 font-semibold text-slate-900">
                     {course.title}
                   </td>
+
+                  {/* LINK */}
                   <td className="px-6 py-5">
                     <a
                       href={course.pdfUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white shadow-sm shadow-emerald-500/20 hover:bg-emerald-700 transition"
+                      className="text-sky-600 hover:underline font-medium"
                     >
-                      Download
+                      {course.pdfUrl}
+                    </a>
+                  </td>
+
+                  {/* DOWNLOAD */}
+                  <td className="px-6 py-5">
+                    <a
+                      href={course.pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 active:scale-95 transition"
+                    >
+                      ⬇ Download PDF
                     </a>
                   </td>
                 </tr>
               ))}
             </tbody>
+
           </table>
         </div>
+
       </div>
     </section>
   );
