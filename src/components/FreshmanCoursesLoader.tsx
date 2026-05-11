@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
@@ -43,7 +43,7 @@ function FreshmanCourseCard({ course }: { course: FreshmanCourse }) {
 
 export default function FreshmanCoursesLoader() {
   const [courses, setCourses] = useState<FreshmanCourse[]>([]);
-  const [activeSemester, setActiveSemester] = useState<"1st Semester" | "2nd Semester">("1st Semester");
+  const [activeSemester, setActiveSemester] = useState<"All Semesters" | "1st Semester" | "2nd Semester">("All Semesters");
   const [activeFilter, setActiveFilter] = useState<"All" | "Required" | "Elective">("All");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -57,7 +57,11 @@ export default function FreshmanCoursesLoader() {
   }, []);
 
   const displayedCourses = useMemo(() => {
-    let filtered = courses.filter((course) => course.semester === activeSemester);
+    let filtered = courses;
+    
+    if (activeSemester !== "All Semesters") {
+      filtered = filtered.filter((course) => course.semester === activeSemester);
+    }
     
     if (activeFilter === "Required") {
       filtered = filtered.filter((course) => course.isRequired);
@@ -93,6 +97,16 @@ export default function FreshmanCoursesLoader() {
           </h1>
           <p className="text-slate-600 max-w-2xl mx-auto leading-8 mb-8">
             Complete first-year course structure with semester organization, faculty grouping, and academic calendar.
+          </p>
+        </div>
+
+        <div className="mb-12 max-w-4xl mx-auto text-left rounded-3xl border border-slate-200 bg-white/80 p-8 shadow-sm">
+          <h2 className="text-3xl font-black text-slate-900 mb-4">Ethiopian Freshman University PDF</h2>
+          <p className="text-slate-600 leading-8">
+            Starting university is a big step, especially for Ethiopian students beginning their higher education. One of the most helpful tools for freshmen is the Ethiopian Freshman University PDF. This document gives a clear picture of the courses and subjects you will study in your first year. It's not just a list of classes; it's a guide to help you succeed in your studies.
+          </p>
+          <p className="text-slate-600 leading-8 mt-4">
+            The first year of university is all about building a strong foundation. You will take courses that teach you important skills like critical thinking, communication, and problem-solving. These subjects are chosen to prepare you for the challenges and opportunities you will face in your studies and future career. Knowing what to expect can help you plan your studies and stay on track.
           </p>
         </div>
 
@@ -132,12 +146,12 @@ export default function FreshmanCoursesLoader() {
         {/* SEMESTER TABS */}
         <div className="mb-12 flex flex-wrap items-center justify-center gap-4">
           <div className="flex gap-3">
-            {["1st Semester", "2nd Semester"].map((sem) => (
+            {['All Semesters', '1st Semester', '2nd Semester'].map((sem) => (
               <button
                 key={sem}
                 type="button"
                 onClick={() => {
-                  setActiveSemester(sem as "1st Semester" | "2nd Semester");
+                  setActiveSemester(sem as "All Semesters" | "1st Semester" | "2nd Semester");
                   setActiveFilter("All");
                 }}
                 className={`${buttonStyles} ${
@@ -195,27 +209,59 @@ export default function FreshmanCoursesLoader() {
           </div>
         </div>
 
-        {/* COURSES GRID */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {isLoading
-            ? Array.from({ length: 6 }).map((_, index) => (
-                <div
-                  key={index}
-                  className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm animate-pulse"
-                >
-                  <div className="h-4 w-20 rounded-full bg-slate-200 mb-4" />
-                  <div className="h-8 rounded-2xl bg-slate-200 mb-3" />
-                  <div className="space-y-2 mb-4">
-                    <div className="h-3 rounded-full bg-slate-200 w-[85%]" />
-                    <div className="h-3 rounded-full bg-slate-200 w-[90%]" />
-                    <div className="h-3 rounded-full bg-slate-200 w-[75%]" />
-                  </div>
-                  <div className="h-3 rounded-full bg-slate-200 w-[60%]" />
-                </div>
-              ))
-            : displayedCourses.map((course) => (
-                <FreshmanCourseCard key={course.id} course={course} />
+        {/* COURSES TABLE */}
+        <div className="overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-sm">
+          {isLoading ? (
+            <div className="p-8 space-y-4">
+              {Array.from({ length: 6 }).map((_, index) => (
+                <div key={index} className="h-16 rounded-2xl bg-slate-100 animate-pulse" />
               ))}
+            </div>
+          ) : (
+            <table className="min-w-full border-collapse text-left">
+              <thead className="bg-sky-600 text-white">
+                <tr>
+                  <th className="px-6 py-4 text-sm font-semibold uppercase tracking-[0.12em]">
+                    Course Name
+                  </th>
+                  <th className="px-6 py-4 text-sm font-semibold uppercase tracking-[0.12em]">
+                    Category
+                  </th>
+                  <th className="px-6 py-4 text-sm font-semibold uppercase tracking-[0.12em]">
+                    Download
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayedCourses.map((course) => (
+                  <tr key={course.id} className="border-b border-slate-200 hover:bg-slate-50">
+                    <td className="px-6 py-5 text-sm font-semibold text-slate-900">
+                      {course.title}
+                    </td>
+                    <td className="px-6 py-5 text-sm text-slate-600">
+                      {course.category}
+                    </td>
+                    <td className="px-6 py-5">
+                      {course.pdfUrl ? (
+                        <a
+                          href={course.pdfUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white shadow-sm shadow-emerald-500/20 hover:bg-emerald-700 transition"
+                        >
+                          Download
+                        </a>
+                      ) : (
+                        <span className="inline-flex items-center justify-center rounded-full bg-slate-100 px-5 py-2 text-sm font-semibold text-slate-500">
+                          Not available
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
 
         {!isLoading && displayedCourses.length === 0 && (

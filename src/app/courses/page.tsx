@@ -20,7 +20,7 @@ const freeResources = [
   {
     title: "Grade 8 Exam Prep",
     desc: "Past exams, model questions, and smart revision materials for Grade 8 national exams.",
-    href: "/downloads/2.pdf",
+    href: "/grade8",
     icon: "📝",
   },
   {

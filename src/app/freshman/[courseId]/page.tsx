@@ -118,6 +118,34 @@ export default function CourseDetailPage() {
                 <p className="text-lg font-black text-slate-900">{course.semester}</p>
               </div>
             </div>
+
+            {(course.pdfUrl || course.notes) && (
+              <div className="grid gap-6 md:grid-cols-2 mt-10">
+                {course.pdfUrl && (
+                  <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                    <h3 className="text-xl font-black text-slate-900 mb-3">📄 Downloadable PDF</h3>
+                    <p className="text-slate-600 mb-5">
+                      Access the course PDF guide tied to Ethiopian university reference.
+                    </p>
+                    <a
+                      href={course.pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-3 text-sm font-semibold text-white hover:bg-emerald-700 transition"
+                    >
+                      Download PDF
+                    </a>
+                  </div>
+                )}
+
+                {course.notes && (
+                  <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                    <h3 className="text-xl font-black text-slate-900 mb-3">📝 Course Notes</h3>
+                    <p className="text-slate-600 leading-7">{course.notes}</p>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
