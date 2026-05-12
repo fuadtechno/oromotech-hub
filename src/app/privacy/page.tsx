@@ -1,333 +1,262 @@
-import Link from "next/link";
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | OromoTech Hub",
-  description:
-    "OromoTech Hub privacy policy fi iccitii odeeffannoo kee.",
-};
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import {
+  Shield,
+  Lock,
+  Eye,
+  Database,
+  Cookie,
+  Globe,
+  ArrowRight,
+  Sparkles,
+  Users,
+  Server,
+  FileText,
+  RefreshCw,
+  Menu,
+  X,
+} from "lucide-react";
 
 export default function PrivacyPage() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const features = [
+    {
+      icon: <Lock className="h-6 w-6 text-cyan-300" />,
+      title: "Information We Collect",
+      desc: "We collect minimal data like account info, learning progress, device info, and preferences to personalize your experience.",
+    },
+    {
+      icon: <Eye className="h-6 w-6 text-cyan-300" />,
+      title: "How We Use Data",
+      desc: "Your data is used only to improve learning experience, platform performance, personalization, and security.",
+    },
+    {
+      icon: <Cookie className="h-6 w-6 text-cyan-300" />,
+      title: "Cookies & Tracking",
+      desc: "Cookies help us keep you signed in, remember preferences, analyze usage, and improve usability.",
+    },
+    {
+      icon: <Shield className="h-6 w-6 text-cyan-300" />,
+      title: "Security",
+      desc: "We use encryption, secure authentication, firewalls, and modern cloud infrastructure to protect your data.",
+    },
+    {
+      icon: <Database className="h-6 w-6 text-cyan-300" />,
+      title: "Your Rights",
+      desc: "You can access, update, export, or delete your personal data anytime from your account settings.",
+    },
+    {
+      icon: <Globe className="h-6 w-6 text-cyan-300" />,
+      title: "Ethical Policy",
+      desc: "We never sell user data. Transparency, safety, and trust are at the core of OromoTech Hub.",
+    },
+  ];
+
+  const extraSections = [
+    {
+      icon: <Server className="h-6 w-6 text-cyan-300" />,
+      title: "Data Retention",
+      desc: "We keep your data only as long as necessary for services or legal requirements.",
+    },
+    {
+      icon: <Users className="h-6 w-6 text-cyan-300" />,
+      title: "Third-Party Services",
+      desc: "We use trusted providers for hosting, analytics, and authentication.",
+    },
+    {
+      icon: <RefreshCw className="h-6 w-6 text-cyan-300" />,
+      title: "Policy Updates",
+      desc: "We may update this policy and notify users of major changes.",
+    },
+    {
+      icon: <FileText className="h-6 w-6 text-cyan-300" />,
+      title: "Children’s Privacy",
+      desc: "We do not knowingly collect data from children without consent.",
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#040816] text-white overflow-hidden relative">
+    <div className="relative min-h-screen overflow-hidden bg-[#030712] text-white">
 
-      {/* PREMIUM BACKGROUND */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
+      {/* ================= HEADER ================= */}
+      <header
+        className={`fixed top-0 left-0 w-full z-50 border-b transition-all
+        ${
+          scrolled
+            ? "bg-[#030712]/90 backdrop-blur-xl border-white/10 shadow-lg"
+            : "bg-transparent border-transparent"
+        }`}
+      >
+        <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
 
-        <div className="absolute top-0 left-0 w-[700px] h-[700px] bg-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
-
-        <div className="absolute top-1/3 right-0 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
-
-        <div className="absolute bottom-0 left-1/3 w-[500px] h-[500px] bg-violet-500/10 rounded-full blur-3xl animate-pulse"></div>
-
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.08),transparent_40%)]"></div>
-
-      </div>
-
-      {/* NAVBAR */}
-      <nav className="sticky top-0 z-50 border-b border-white/10 bg-white/5 backdrop-blur-2xl">
-
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-
-          <Link
-            href="/"
-            className="text-2xl font-black tracking-tight"
-          >
-
-            <span className="text-white">
-              OromoTech
-            </span>
-
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
-              {" "}Hub
-            </span>
-
+          <Link href="/" className="text-xl font-black text-white">
+            OromoTech Hub
           </Link>
 
-          <div className="flex items-center gap-4 md:gap-6 text-sm font-semibold">
+          {/* DESKTOP MENU */}
+          <nav className="hidden md:flex items-center gap-6 text-sm">
+            <Link href="/" className="text-gray-300 hover:text-cyan-300">
+              Home
+            </Link>
 
-            <Link
-              href="/courses"
-              className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-emerald-500/20 hover:scale-105 transition-all duration-300"
-            >
+            <Link href="/courses" className="text-gray-300 hover:text-cyan-300">
               Courses
             </Link>
 
             <Link
-              href="/login"
-              className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-emerald-500/20 hover:scale-105 transition-all duration-300"
+              href="/get-started"
+              className="bg-cyan-400 px-4 py-2 font-bold text-black rounded-xl"
             >
-              Login
+              Get Started
+            </Link>
+          </nav>
+
+          {/* MOBILE BUTTON */}
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden text-white"
+          >
+            {open ? <X /> : <Menu />}
+          </button>
+
+        </div>
+
+        {/* MOBILE MENU */}
+        <div
+          className={`md:hidden overflow-hidden transition-all border-t border-white/10
+          ${
+            open
+              ? "max-h-96 opacity-100 bg-[#030712]/95 backdrop-blur-xl"
+              : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="flex flex-col px-6 py-4 gap-4 text-sm">
+
+            <Link
+              href="/"
+              onClick={() => setOpen(false)}
+              className="text-gray-300 hover:text-cyan-300"
+            >
+              🏠 Home – Start here
+            </Link>
+
+            <Link
+              href="/courses"
+              onClick={() => setOpen(false)}
+              className="text-gray-300 hover:text-cyan-300"
+            >
+              📚 Courses – Learn skills
+            </Link>
+
+            <Link
+              href="/get-started"
+              onClick={() => setOpen(false)}
+              className="bg-cyan-400 text-black px-4 py-2 rounded-xl font-bold w-fit"
+            >
+              🚀 Get Started
             </Link>
 
           </div>
+        </div>
+      </header>
 
+      {/* ================= HERO ================= */}
+      <section className="relative pt-40 text-center px-6">
+        <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-5 py-2 text-xs text-cyan-300">
+          <Sparkles className="h-4 w-4" />
+          Privacy • Security • Trust
         </div>
 
-      </nav>
+        <h1 className="mt-8 text-5xl md:text-7xl font-black">
+          Privacy Policy
+          <span className="block bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text text-transparent">
+            OromoTech Hub
+          </span>
+        </h1>
 
-      {/* HERO */}
-      <section className="relative">
-
-        <div className="max-w-5xl mx-auto px-6 pt-24 pb-16 text-center">
-
-          {/* Badge */}
-          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-emerald-500/20 bg-white/5 backdrop-blur-xl mb-8">
-
-            <span className="text-lg">🔒</span>
-
-            <span className="text-sm font-black tracking-[0.2em] text-emerald-300 uppercase">
-              Privacy & Security
-            </span>
-
-          </div>
-
-          {/* Heading */}
-          <h1 className="text-5xl md:text-7xl font-black leading-tight tracking-tight">
-
-            Privacy
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
-              {" "}Policy
-            </span>
-
-          </h1>
-
-          {/* Paragraph */}
-          <p className="mt-8 text-lg md:text-xl text-gray-300 leading-10 max-w-3xl mx-auto">
-
-            OromoTech Hub keessatti odeeffannoo kee
-            nageenya olaanaa waliin eegna. Iccitiin,
-            amanamummaan fi security priority keenya keessaa isa guddaadha.
-
-          </p>
-
-        </div>
-
+        <p className="mx-auto mt-6 max-w-3xl text-gray-400 leading-8">
+          Your privacy is our foundation. We protect your data using modern encryption
+          and transparent systems.
+        </p>
       </section>
 
-      {/* CONTENT */}
-      <main className="relative max-w-5xl mx-auto px-6 pb-24">
-
-        <div className="grid gap-8">
-
-          {/* CARD 1 */}
-          <section className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-2xl p-8 md:p-10 hover:border-emerald-400/30 hover:-translate-y-1 transition-all duration-500">
-
-            <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/10 blur-3xl rounded-full"></div>
-
-            <div className="relative">
-
-              <div className="flex items-center gap-4 mb-6">
-
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-400 flex items-center justify-center text-3xl shadow-lg shadow-emerald-500/20">
-                  📁
-                </div>
-
-                <div>
-
-                  <h2 className="text-2xl md:text-3xl font-black text-white">
-                    Odeeffannoo Sassaabnu
-                  </h2>
-
-                  <p className="text-emerald-300 text-sm mt-1">
-                    Information We Collect
-                  </p>
-
-                </div>
-
+      {/* ================= FEATURES ================= */}
+      <section className="mx-auto max-w-7xl px-6 py-28">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {features.map((item, i) => (
+            <div
+              key={i}
+              className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-2xl"
+            >
+              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-black/30 border border-white/10">
+                {item.icon}
               </div>
 
-              <p className="text-gray-300 leading-9 text-lg">
-
-                Maqaa, email, fi odeeffannoo account kee qofa sassaabna.
-                Odeeffannoo dhuunfaa kee namoota sadaffaaf hin gurgurru,
-                hin qoodnu, akkasumas security cimaa keessatti eegna.
-
-              </p>
-
+              <h3 className="text-xl font-black">{item.title}</h3>
+              <p className="mt-3 text-gray-400 leading-7">{item.desc}</p>
             </div>
+          ))}
+        </div>
+      </section>
 
-          </section>
-
-          {/* CARD 2 */}
-          <section className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-2xl p-8 md:p-10 hover:border-cyan-400/30 hover:-translate-y-1 transition-all duration-500">
-
-            <div className="absolute bottom-0 left-0 w-40 h-40 bg-cyan-500/10 blur-3xl rounded-full"></div>
-
-            <div className="relative">
-
-              <div className="flex items-center gap-4 mb-6">
-
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-3xl shadow-lg shadow-cyan-500/20">
-                  ⚡
-                </div>
-
-                <div>
-
-                  <h2 className="text-2xl md:text-3xl font-black text-white">
-                    Akkamitti Fayyadamna
-                  </h2>
-
-                  <p className="text-cyan-300 text-sm mt-1">
-                    How We Use Information
-                  </p>
-
-                </div>
-
+      {/* ================= EXTRA ================= */}
+      <section className="mx-auto max-w-7xl px-6 pb-20">
+        <div className="grid gap-8 md:grid-cols-2">
+          {extraSections.map((item, i) => (
+            <div
+              key={i}
+              className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 backdrop-blur-2xl"
+            >
+              <div className="mb-4 flex items-center gap-3">
+                {item.icon}
+                <h3 className="text-xl font-bold">{item.title}</h3>
               </div>
-
-              <p className="text-gray-300 leading-9 text-lg">
-
-                Odeeffannoon kee learning experience kee fooyyessuuf,
-                progress tracking, authentication fi notification
-                barbaachisaa qofaaf fayyadama. Spam ykn ads hin erginu.
-
-              </p>
-
+              <p className="text-gray-400 leading-7">{item.desc}</p>
             </div>
+          ))}
+        </div>
+      </section>
 
-          </section>
+      {/* ================= CTA ================= */}
+      <section className="mx-auto max-w-5xl px-6 pb-28">
+        <div className="rounded-[3rem] border border-cyan-400/20 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 p-12 text-center backdrop-blur-3xl">
 
-          {/* CARD 3 */}
-          <section className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 backdrop-blur-2xl p-8 md:p-10 hover:border-emerald-400/30 hover:-translate-y-1 transition-all duration-500">
+          <h2 className="text-4xl md:text-5xl font-black">
+            Need Help With Privacy?
+          </h2>
 
-            <div className="absolute top-0 left-1/3 w-56 h-56 bg-emerald-400/10 blur-3xl rounded-full"></div>
+          <p className="mt-5 text-gray-300">
+            Contact us anytime for account or data requests.
+          </p>
 
-            <div className="relative">
-
-              <div className="flex items-center gap-4 mb-6">
-
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center text-3xl shadow-lg shadow-emerald-500/20">
-                  🛡️
-                </div>
-
-                <div>
-
-                  <h2 className="text-2xl md:text-3xl font-black text-white">
-                    Nageenyaa (Security)
-                  </h2>
-
-                  <p className="text-emerald-300 text-sm mt-1">
-                    Advanced Security Protection
-                  </p>
-
-                </div>
-
-              </div>
-
-              <p className="text-gray-200 leading-9 text-lg">
-
-                Authentication system ammayyaa fi encryption cimaa
-                fayyadamuun password fi data kee eegna.
-                Odeeffannoo kee qaama biraaf hin kenninu.
-
-              </p>
-
-            </div>
-
-          </section>
-
-          {/* CARD 4 */}
-          <section className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-2xl p-8 md:p-10 hover:border-violet-400/30 hover:-translate-y-1 transition-all duration-500">
-
-            <div className="absolute bottom-0 right-0 w-40 h-40 bg-violet-500/10 blur-3xl rounded-full"></div>
-
-            <div className="relative">
-
-              <div className="flex items-center gap-4 mb-6">
-
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-3xl shadow-lg shadow-violet-500/20">
-                  📞
-                </div>
-
-                <div>
-
-                  <h2 className="text-2xl md:text-3xl font-black text-white">
-                    Quunnamtii
-                  </h2>
-
-                  <p className="text-violet-300 text-sm mt-1">
-                    Contact & Support
-                  </p>
-
-                </div>
-
-              </div>
-
-              <p className="text-gray-300 leading-9 text-lg">
-
-                Gaaffii ykn yaaddoo yoo qabaatte,
-                dura <Link
-                  href="/about"
-                  className="text-emerald-400 hover:text-cyan-400 underline underline-offset-4 transition"
-                >
-                  About
-                </Link>{" "}
-                fuula keenya ilaali ykn support keenya qunnami.
-
-              </p>
-
-            </div>
-
-          </section>
+          <a
+            href="mailto:support@oromotech-hub.com"
+            className="mt-8 inline-block text-cyan-300 font-bold text-lg"
+          >
+            support@oromotech-hub.com
+          </a>
 
         </div>
+      </section>
 
-        {/* BOTTOM CTA */}
-        <div className="mt-20">
-
-          <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-gradient-to-r from-emerald-500/10 via-cyan-500/10 to-violet-500/10 backdrop-blur-2xl p-10 md:p-14 text-center">
-
-            <div className="absolute top-0 left-1/3 w-72 h-72 bg-emerald-400/10 blur-3xl rounded-full"></div>
-
-            <div className="relative">
-
-              <p className="uppercase tracking-[0.3em] text-emerald-300 text-sm font-black mb-5">
-                Trusted Learning Platform
-              </p>
-
-              <h2 className="text-4xl md:text-5xl font-black leading-tight">
-
-                Secure.
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
-                  {" "}Modern.
-                </span>
-                Reliable.
-
-              </h2>
-
-              <p className="mt-8 text-gray-300 text-lg leading-9 max-w-2xl mx-auto">
-
-                OromoTech Hub keessatti privacy fi security
-                technology ammayyaa irratti hundaa’e waliin eegama.
-
-              </p>
-
-              <div className="mt-10 flex flex-wrap justify-center gap-5">
-
-                <Link
-                  href="/courses"
-                  className="bg-gradient-to-r from-emerald-500 to-cyan-500 px-8 py-4 rounded-2xl font-bold text-white shadow-2xl shadow-emerald-500/20 hover:scale-105 transition-all duration-300"
-                >
-                  Explore Courses
-                </Link>
-
-                <Link
-                  href="/login"
-                  className="border border-white/10 bg-white/5 px-8 py-4 rounded-2xl font-bold text-white hover:bg-white/10 transition-all duration-300"
-                >
-                  Login
-                </Link>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </main>
+      {/* ================= FOOTER ================= */}
+      <footer className="border-t border-white/10 py-10 text-center text-gray-500 text-sm">
+        <p className="text-white font-bold">OromoTech Hub</p>
+        <p className="mt-2">© {new Date().getFullYear()} All rights reserved.</p>
+      </footer>
 
     </div>
   );
