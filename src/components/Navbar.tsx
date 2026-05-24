@@ -27,14 +27,14 @@ export default function Navbar() {
           Privacy policy
         </Link>
 
-        {/* 🔥 NEW: External Learning Platform */}
+        {/* 🔥 UPDATED: External Motivation Platform Link */}
         <a
-          href="https://aww-fuadtechnos-projects.vercel.app/"
+          href="https://motivation-platform.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-600 font-bold hover:text-blue-800 transition"
+          className="text-amber-500 font-bold hover:text-amber-600 transition flex items-center gap-1"
         >
-          Learning Platform
+          Motivations
         </a>
 
       </div>
