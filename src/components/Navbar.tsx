@@ -32,7 +32,7 @@ export default function Navbar() {
           href="https://motivation-platform.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-amber-500 font-bold hover:text-amber-600 transition flex items-center gap-1"
+           className="text-blue-600 font-bold hover:text-blue-800 transition"
         >
           Motivations
         </a>
