@@ -35,8 +35,8 @@ export default function CoursesPage() {
       color: "from-emerald-500 to-green-500",
     },
     {
-      title: "Pre-Engineering Academy",
-      desc: "Engineering mathematics and physics foundation.",
+      title: "Network Design",
+      desc: "foundation network design full  Accademy.",
       href: "/downloads/4.pdf",
       icon: "⚙️",
       badge: "Engineering",
@@ -77,14 +77,34 @@ export default function CoursesPage() {
   ];
 
   const premiumCourses = [
-    { name: "HTML", slug: "html", category: "WEB", icon: "🌐" },
-    { name: "CSS", slug: "css", category: "WEB", icon: "🎨" },
+    { name: "HTML", slug: "html", category: "FRONTEND", icon: "🌐" },
+    { name: "CSS", slug: "css", category: "FRONTEND", icon: "🎨" },
+    { name: "JAVASCRIPT", slug: "js", category: "FRONTEND", icon: "🌍" },
     { name: "REACT", slug: "react", category: "FRONTEND", icon: "⚛️" },
     { name: "NEXT.JS", slug: "nextjs", category: "FRONTEND", icon: "▲" },
     { name: "NODE.JS", slug: "node", category: "BACKEND", icon: "🟢" },
     { name: "PYTHON", slug: "python", category: "BACKEND", icon: "🐍" },
     { name: "POSTGRESQL", slug: "postgres", category: "DATABASE", icon: "🐘" },
     { name: "DOCKER", slug: "docker", category: "DEVOPS", icon: "🐳" },
+    { name: "BOOTSTRAP", slug: "bootstrap", category: "FRONTEND", icon: "🌈" },
+    { name: "JAVA", slug: "java", category: "front/back", icon: "👨‍💻" },
+    { name: "NEXT", slug: "next", category: "FRONTEND", icon: "⚛️" },
+    { name: "JQUERY", slug: "jq", category: "FRONTEND", icon: "🌍" },
+    { name: "ANGULAR", slug: "angular", category: "FRONTEND", icon: "🗄️" },
+    { name: "EXPRESS.js", slug: "express.js", category: "BACKEND", icon: "🌍" },
+    { name: "DJANGO", slug: "django", category: "BACKEND", icon: "🗄️" },
+    { name: "PHP", slug: "php", category: "BACKEND", icon: "🌍" },
+    { name: "SQL", slug: "sql", category: "DATABASE", icon: "🗄️" },
+    { name: "MONGODB", slug: "mongodb", category: "DATABASE", icon: "🗄️" },
+    { name: "FIREBASE", slug: "fbase", category: "BACKENd", icon: "🟢" },
+    { name: "AWS", slug: "aws", category: "CLOUD", icon: "🌍" },
+    { name: "GIT & GITHUBGIT ", slug: "tools", category: "GITHUB", icon: "🟢" },
+    { name: "TYPESCRIPT", slug: "TS", category: "FRONTEND", icon: "🌍" },
+    { name: "AI", slug: "ai", category: "PROGRAMMING", icon: "🤖" },
+    { name: "OS", slug: "os", category: "PROGRAMMING", icon: "👨‍💻" }, 
+    { name: "DSA", slug: "", category: "ALGORESIM", icon: "👨‍💻" }, 
+    { name: "MOBILE APP", slug: "MA", category: "PROGRAMMING", icon: "❄️" }, 
+    { name: "C#", slug: "csharp", category: "PROGRAMMING", icon: "👨‍💻" }, 
   ];
 
   return (
@@ -203,6 +223,7 @@ export default function CoursesPage() {
           <h2 className="text-4xl font-black text-center mb-14">
             Premium Dashboard
           </h2>
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-1000 bg-[linear-gradient(120deg,transparent_20%,rgba(255,255,255,0.15)_50%,transparent_80%)] translate-x-[-150%] group-hover:translate-x-[150%]" />
 
           <div className="grid md:grid-cols-4 gap-6">
             {premiumCourses.map((course, i) => (
